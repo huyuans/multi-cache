@@ -2,8 +2,8 @@ package com.huyuans.cache.config;
 
 import cn.hutool.core.util.StrUtil;
 import com.huyuans.cache.RedisCaffeineCacheManager;
-import com.huyuans.cache.custom.RedisCaffeineCacheManagerCustomizer;
 import com.huyuans.cache.aspect.CacheExpireAspect;
+import com.huyuans.cache.custom.RedisCaffeineCacheManagerCustomizer;
 import com.huyuans.cache.custom.ServerIdGenerator;
 import com.huyuans.cache.properties.CacheProperties;
 import com.huyuans.cache.properties.CaffeineProperties;
@@ -40,7 +40,13 @@ public class CacheAutoConfiguration {
                                                   ObjectProvider<ServerIdGenerator> serverIdGenerator,
                                                   ObjectProvider<RedisCaffeineCacheManagerCustomizer> cacheManagerCustomizer) {
         if (StrUtil.isBlank(redisPropertiesExtend.getServerId())) {
-            serverIdGenerator.ifAvailable(idGenerator -> redisPropertiesExtend.setServerId(idGenerator.get()));
+            serverIdGenerator.ifAvailable(idGenerator -> {
+                String serverId = idGenerator.get();
+                if (StrUtil.isBlank(serverId)) {
+                    throw new RuntimeException("can't not return empty by \"ServerIdGenerator\",please check");
+                }
+                redisPropertiesExtend.setServerId(serverId);
+            });
         }
         RedisCaffeineCacheManager cacheManager = new RedisCaffeineCacheManager(cacheProperties, caffeineProperties, redisPropertiesExtend);
         redisTemplate.ifAvailable(cacheManager::setRedisTemplate);

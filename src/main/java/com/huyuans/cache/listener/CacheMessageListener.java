@@ -28,7 +28,7 @@ public class CacheMessageListener implements MessageListener {
     @Override
     public void onMessage(Message message, byte[] pattern) {
         CacheMessage cacheMessage = (CacheMessage) redisSerializer.deserialize(message.getBody());
-        if (!Objects.equals(cacheMessage.getServerId(), redisCaffeineCacheManager.getServerId())) {
+        if (cacheMessage != null && !Objects.equals(cacheMessage.getServerId(), redisCaffeineCacheManager.getServerId())) {
             log.debug("receive a redis topic message, clear local cache, the cacheName is {}, operation is {}, the key is {}",
                     cacheMessage.getCacheName(), cacheMessage.getOperation(), cacheMessage.getKey());
             redisCaffeineCacheManager.clearLocal(cacheMessage.getCacheName(), cacheMessage.getKey(), cacheMessage.getOperation());
