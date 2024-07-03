@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class RedisImportFilter implements AutoConfigurationImportFilter, EnvironmentAware {
 
-    public static final String REDIS_ENABLE_PROPERTIES = "spring.redis.enabled";
+    public static final String REDIS_ENABLE_PROPERTIES = "spring.data.redis.enabled";
 
     private Boolean redisEnabled;
 

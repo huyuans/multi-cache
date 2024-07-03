@@ -15,7 +15,7 @@ import java.util.Map;
  * @date 2024/4/30
  */
 @Data
-@ConfigurationProperties(prefix = "spring.redis")
+@ConfigurationProperties(prefix = "spring.data.redis")
 public class RedisPropertiesExtend {
 
     /**

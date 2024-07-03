@@ -361,7 +361,7 @@ public class RedisCaffeineCache extends AbstractValueAdaptingCache implements Ca
     }
 
     @Override
-    public @NonNull Map<Object, Object> getAll(@NonNull Iterable<?> keys, @NonNull Function<Iterable<?>, @NonNull Map<Object, Object>> mappingFunction) {
+    public Map<Object, Object> getAll(Iterable<?> keys, Function<? super Set<?>, ? extends Map<?, ?>> mappingFunction) {
         GetAllContext context = new GetAllContext((Iterable<Object>) keys);
         context.saveRedisAbsentKeys = true;
         doGetAll(context);

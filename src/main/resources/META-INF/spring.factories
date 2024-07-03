@@ -1,6 +1,2 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.huyuans.cache.config.CacheAutoConfiguration, \
-com.huyuans.cache.config.RedisAutoConfiguration
-
 org.springframework.boot.autoconfigure.AutoConfigurationImportFilter=\
 com.huyuans.cache.config.RedisImportFilter
