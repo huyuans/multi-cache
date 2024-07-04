@@ -1,3 +1,2 @@
 com.huyuans.cache.config.CacheAutoConfiguration
-
 com.huyuans.cache.config.RedisAutoConfiguration

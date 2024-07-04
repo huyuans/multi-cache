@@ -31,7 +31,7 @@ public class RedisPropertiesExtend {
     /**
      * 空值的默认过期时间
      */
-    private Duration defaultNullValueExipre = null;
+    private Duration defaultNullValueExpire = null;
 
     /**
      * 每个cacheName的过期时间，优先级比defaultExpiration高

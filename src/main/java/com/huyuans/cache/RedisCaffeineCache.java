@@ -96,7 +96,7 @@ public class RedisCaffeineCache extends AbstractValueAdaptingCache implements Ca
         } else {
             this.redisExpire = ObjectUtil.defaultIfNull(redisPropertiesExtend.getExpires().get(cacheName), redisPropertiesExtend.getDefaultExpire());
         }
-        this.redisNullValueExpire = ObjectUtil.defaultIfNull(redisPropertiesExtend.getDefaultNullValueExipre(), this.redisExpire);
+        this.redisNullValueExpire = ObjectUtil.defaultIfNull(redisPropertiesExtend.getDefaultNullValueExpire(), this.redisExpire);
         this.topic = redisPropertiesExtend.getTopic();
         this.serverId = redisPropertiesExtend.getServerId();
         this.redisEnabled = Boolean.parseBoolean(redisPropertiesExtend.getEnabled().name());
